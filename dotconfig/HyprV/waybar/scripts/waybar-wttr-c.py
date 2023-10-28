@@ -58,7 +58,7 @@ WEATHER_CODES = {
 data = {}
 
 
-weather = requests.get("https://wttr.in/?format=j1").json()
+weather = requests.get("https://wttr.in/Berlin?format=j1").json()
 
 
 def format_time(time):
@@ -66,7 +66,7 @@ def format_time(time):
 
 
 def format_temp(temp):
-    return (hour['FeelsLikeC']+"°").ljust(3)
+    return (hour['tempC']+"°").ljust(3)
 
 
 def format_chances(hour):
@@ -87,14 +87,14 @@ def format_chances(hour):
             conditions.append(chances[event]+" "+hour[event]+"%")
     return ", ".join(conditions)
 
-tempint = int(weather['current_condition'][0]['FeelsLikeC'])
+tempint = int(weather['current_condition'][0]['temp_C'])
 extrachar = ''
 #if tempint > 0 and tempint < 10:
 #    extrachar = '+'
 
 
 data['text'] = ' '+WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
-    " "+extrachar+weather['current_condition'][0]['FeelsLikeC']+"°"
+    " "+extrachar+weather['current_condition'][0]['temp_C']+"°"
 
 data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_C']}°</b>\n"
 data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeC']}°\n"
