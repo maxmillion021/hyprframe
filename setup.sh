@@ -73,7 +73,7 @@ if [[ $inst =~ ^[Nn]$ ]]; then
 
 if [[ $inst =~ ^[Yy]$ ]]; then
    #git_pkgs="grimblast-git sddm-git hyprpicker-git waybar-hyprland-git"
-   hypr_pkgs="wl-clipboard wf-recorder rofi wlogout swaylock-effects dunst swaybg kitty"    
+   hypr_pkgs="waybar swaylock wl-clipboard wf-recorder rofi wlogout swaylock-effects dunst swaybg kitty"    
    font_pkgs="ttf-nerd-fonts-symbols-common otf-firamono-nerd inter-font otf-sora ttf-fantasque-nerd noto-fonts noto-fonts-emoji ttf-comfortaa"
    font_pkgs2="ttf-jetbrains-mono-nerd ttf-icomoon-feather ttf-iosevka-nerd adobe-source-code-pro-fonts"
    app_pkgs="nwg-look-bin qt5ct btop jq gvfs ffmpegthumbs swww mousepad mpv  playerctl pamixer noise-suppression-for-voice"
