@@ -73,7 +73,7 @@ if [[ $inst =~ ^[Nn]$ ]]; then
 
 if [[ $inst =~ ^[Yy]$ ]]; then
    #git_pkgs="grimblast-git sddm-git hyprpicker-git waybar-hyprland-git"
-   hypr_pkgs="waybar swaylock wl-clipboard wf-recorder rofi wlogout swaylock-effects dunst swaybg kitty"    
+   hypr_pkgs="waybar wl-clipboard wf-recorder rofi wlogout swaylock-effects dunst swaybg kitty"    
    font_pkgs="ttf-nerd-fonts-symbols-common otf-firamono-nerd inter-font otf-sora ttf-fantasque-nerd noto-fonts noto-fonts-emoji ttf-comfortaa"
    font_pkgs2="ttf-jetbrains-mono-nerd ttf-icomoon-feather ttf-iosevka-nerd adobe-source-code-pro-fonts"
    app_pkgs="nwg-look-bin qt5ct btop jq gvfs ffmpegthumbs swww mousepad mpv  playerctl pamixer noise-suppression-for-voice"
@@ -81,7 +81,7 @@ if [[ $inst =~ ^[Yy]$ ]]; then
    theme_pkgs="nordic-theme papirus-icon-theme starship "i
    syst_pkgs="tlp pipewire"
 
-    yay -R --noconfirm swaylock waybar
+    yay -R --noconfirm swaylock
 
     if ! yay -S --noconfirm $git_pkgs $hypr_pkgs $font_pkgs $font_pkgs2 $app_pkgs $app_pkgs2 $theme_pkgs 2>&1 | tee -a $LOG; then
         print_error " Failed to install additional packages - please check the install.log \n"
