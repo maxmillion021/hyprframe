@@ -1,0 +1,68 @@
+* {
+	font-size: 20px;
+	font-family: monospace;
+}
+
+window#waybar {
+	background: #04151f;
+	color: #efd6ac;
+}
+
+#workspaces,
+#custom-applauncher,
+#custom-wlogout,
+#clock,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk,
+#tray {
+	background: #183a37;
+	border-radius: 15px;
+	margin: 3px 2px;
+}
+
+#custom-workspaces button {
+	padding: 0 2px;
+	color: #efd6ac;
+}
+#custom-workspaces button.focused {
+	color: #c44900;
+}
+#custom-workspaces button:hover {
+	box-shadow: inherit;
+	text-shadow: inherit;
+}
+#custom-workspaces button:hover {
+	background: #c44900;
+	border: #c44900;
+	padding: 0 3px;
+}
+
+#pulseaudio {
+	color: #efd6ac;
+}
+#memory {
+	color: #efd6ac;
+}
+#cpu {
+	color: #efd6ac;
+}
+#battery {
+	color: #efd6ac;
+}
+#disk {
+	color: #efd6ac;
+}
+
+#clock,
+#custom-applauncher,
+#custom-wlogout,
+#pulseaudio,
+#memory,
+#cpu,
+#battery,
+#disk {
+	padding: 0 10px;
+}

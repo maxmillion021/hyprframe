@@ -1,147 +1,144 @@
+/* ══════════════════════════════════════════════════════════════════
+   Noctra OS - Waybar Dynamic Island (Performance Optimized)
+   ══════════════════════════════════════════════════════════════════ */
+@import 'colors.css';
+
+/* ── Global reset ── */
 * {
     border: none;
     border-radius: 0;
-    font-family: Cartograph CF Nerd Font, monospace;
-    font-weight: bold;
-    font-size: 14px;
+    font-family: "JetBrainsMono Nerd Font Propo", monospace;
+    font-size: 13px;
     min-height: 0;
+    padding: 0;
+    margin: 0;
 }
 
 window#waybar {
-    background: rgba(21, 18, 27, 0);
-    color: #cdd6f4;
+    background: transparent;
 }
 
-tooltip {
-    background: #1e1e2e;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #11111b;
+/* ── The Dynamic Island ── */
+.modules-center {
+    background-color: @surface;
+    border-radius: 0 0 25px 25px;
+    padding: 6px 18px;
+    /* Only transition hardware-accelerated/paint properties */
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#workspaces button {
-    padding: 5px;
-    color: #313244;
-    margin-right: 5px;
+/* ── Shared module base ── */
+#workspaces,
+#custom-applauncher
+#idle_inhibitor,
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#tray,
+#custom-notification {
+    background: transparent;
+    padding: 4px 10px;
+    margin: 0 2px;
+    color: @on_surface;
+    border-radius: 9999px; 
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-#workspaces button.active {
-    color: #a6adc8;
+/* Hover effect */
+#workspaces button:hover,
+#pulseaudio:hover,
+#network:hover,
+#battery:hover,
+#custom-notification:hover {
+    background: @surface_variant;
 }
 
-#workspaces button.focused {
-    color: #a6adc8;
-    background: #eba0ac;
-    border-radius: 10px;
+/* ── Clock ── */
+#clock {
+    color: @primary;
+    font-weight: 600;
+    padding: 4px 14px;
 }
 
-#workspaces button.urgent {
-    color: #11111b;
-    background: #a6e3a1;
-    border-radius: 10px;
+/* ── Workspaces (Jitter-Free) ── */
+#workspaces {
+    padding: 0 4px;
+    margin: 0 4px;
+}
+
+button {
+    box-shadow: none;
+    background: transparent;
+    border-radius: 9999px;
+    padding: 4px 10px;
+    min-width: 32px; /* STATIC width. No more jitter. */
+    color: @on_surface_variant;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 #workspaces button:hover {
-    background: #11111b;
-    color: #cdd6f4;
-    border-radius: 10px;
+    color: @on_surface;
+    background: @surface_variant;
 }
 
-#custom-language,
-#custom-updates,
-#custom-caffeine,
-#custom-weather,
-#window,
-#clock,
-#battery,
-#pulseaudio,
-#network,
-#workspaces,
-#tray,
-#backlight {
-    background: #1e1e2e;
-    padding: 0px 10px;
-    margin: 3px 0px;
-    margin-top: 10px;
-    border: 1px solid #181825;
+#workspaces button.active {
+    color: @on_primary;
+    background: @primary;
+    /* Do NOT change width here */
 }
 
-#tray {
-    border-radius: 10px;
-    margin-right: 10px;
+#workspaces button.urgent {
+    animation: urgent-blink 800ms steps(4) infinite alternate;
 }
 
-#workspaces {
-    background: #1e1e2e;
-    border-radius: 10px;
-    margin-left: 10px;
-    padding-right: 0px;
-    padding-left: 5px;
+@keyframes urgent-blink {
+    to { background-color: @error; color: @on_error; }
 }
 
-#custom-caffeine {
-    color: #89dceb;
-    border-radius: 10px 0px 0px 10px;
-    border-right: 0px;
-    margin-left: 10px;
+/* ── Audio & Network ── */
+#pulseaudio.muted,
+#network.disconnected,
+#network.disabled {
+    color: @outline;
 }
 
-#custom-language {
-    color: #f38ba8;
-    border-left: 0px;
-    border-right: 0px;
+/* ── Battery ── */
+#battery.charging,
+#battery.plugged {
+    color: @tertiary;
 }
 
-#custom-updates {
-    color: #f5c2e7;
-    border-radius: 10px 0px 0px 10px;
-    border-left: 0px;
-    border-right: 0px;
+#battery.warning:not(.charging) {
+    color: @tertiary;
+    animation: battery-warn 2.5s steps(6) infinite alternate;
 }
 
-#window {
-    border-radius: 10px;
-    margin-left: 60px;
-    margin-right: 60px;
+#battery.critical:not(.charging) {
+    color: @error;
+    animation: battery-critical 0.6s steps(4) infinite alternate;
 }
 
-#clock {
-    color: #fab387;
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 5px;
-    border-right: 0px;
+@keyframes battery-warn { to { color: @error; } }
+@keyframes battery-critical { to { color: @on_error; } }
+
+/* ── Tray ── */
+#tray > .passive { -gtk-icon-effect: dim; }
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background: @error_container;
+    border-radius: 50%;
 }
 
-#network {
-    color: #f9e2af;
-    border-left: 0px;
-    border-right: 0px;
+/* ── Tooltip ── */
+tooltip {
+    background-color: @surface_variant;
+    border: 1px solid @outline_variant;
+    border-radius: 12px;
+    padding: 4px 8px;
 }
 
-#pulseaudio {
-    color: #89b4fa;
-    border-left: 0px;
-    border-right: 0px;
+tooltip label {
+    color: @on_surface_variant;
 }
 
-#pulseaudio.microphone {
-    color: #cba6f7;
-    border-radius: 0px 10px 10px 0px;
-    border-left: 0px;
-    border-right: 0px;
-    margin-right: 5px;
-}
-
-#battery {
-    color: #a6e3a1;
-    border-radius: 0 10px 10px 0;
-    margin-right: 10px;
-    border-left: 0px;
-}
-
-#custom-weather {
-    border-radius: 0px 10px 10px 0px;
-    border-right: 0px;
-    margin-left: 0px;
-}

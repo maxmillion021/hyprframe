@@ -1,0 +1,140 @@
+* {
+    bg: #1e1e2e;
+    bg-alt: #181825;
+    fg: #cdd6f4;
+    fg-alt: #a6adc8;
+    accent: #cba6f7;
+    border: #313244;
+    selected: #f5c2e7;
+    urgent: #f38ba8;
+    blue: #89b4fa;
+    green: #a6e3a1;
+    yellow: #f9e2af;
+    text: #cdd6f4;
+    dim: #6c7086;
+}
+
+window {
+    background-color: @bg;
+    border: 2px;
+    border-color: @border;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+mainbox {
+    background-color: @bg;
+    border: 0px;
+    padding: 0;
+}
+
+inputbar {
+    background-color: @bg;
+    border: 0px 0px 2px;
+    border-color: @border;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 0 0 10px 0;
+}
+
+prompt {
+    background-color: @accent;
+    text-color: @bg;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
+
+entry {
+    background-color: @bg;
+    text-color: @fg;
+    padding: 6px;
+    placeholder-color: @dim;
+}
+
+listview {
+    background-color: @bg;
+    border: 0px;
+    spacing: 4px;
+    cycle: true;
+}
+
+element {
+    background-color: @bg;
+    text-color: @fg;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    size: 24px;
+    padding: 0 8px 0 0;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    text-shadow: none;
+}
+
+element selected {
+    background-color: @selected;
+    text-color: @bg;
+    border: 0px;
+}
+
+element urgent {
+    background-color: @urgent;
+    text-color: @bg;
+}
+
+mode-switcher {
+    background-color: @bg;
+    border: 0px;
+    spacing: 0;
+}
+
+button {
+    background-color: @bg-alt;
+    text-color: @dim;
+    padding: 8px 16px;
+    border: 0px;
+    border-radius: 6px;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+message {
+    background-color: @bg;
+    border: 0px;
+    padding: 0;
+}
+
+textbox {
+    background-color: @bg;
+    text-color: @fg;
+    padding: 4px;
+    margin: 0;
+}
+
+error {
+    background-color: @urgent;
+    text-color: @bg;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+textbox-nsel {
+    background-color: transparent;
+    text-color: @dim;
+}

@@ -1,0 +1,102 @@
+{
+	"layer": "top",
+	"position": "top",
+
+  "modules-left": [
+    "custom/applauncher", 
+    "hyprland/workspaces"
+  ],
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+		"pulseaudio",
+		"memory",
+		"cpu",
+		"battery",
+		"tray",
+		"custom/wlogout"
+	],
+
+  "custom/applauncher": {
+      "format": "󰣇",
+      "tooltip": false,
+      "on-click": "rofi -show drun"
+  },
+  "hyprland/workspaces": {
+      "on-click": "activate",
+      "format": "{icon}",
+      "format-icons": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10"
+      },
+      "all-outputs": true,
+      "show-special": false,
+      "persistent-workspaces": {}
+  },
+	"clock": {
+		"format": "{:%a %H:%M %d-%m}",
+		"tooltip": false
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "{used:0.1f}GiB",
+		"tooltip-format": "RAM {used:0.1f}GiB / {total:0.1f}GiB"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "󰘚 {usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 80,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
+	"custom/wlogout": {
+		"format": "󰍃",
+		"tooltip": false,
+		"on-click": "wlogout"
+	},
+	"tray": {
+		"icon-size": 20
+	}
+}
